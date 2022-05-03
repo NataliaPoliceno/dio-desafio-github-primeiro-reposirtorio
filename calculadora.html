@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        /* o sinal de * se refere a todos elementos da pagina, cada navegador tem seu proprio estilo */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .fundo {
+            /* cor de fundo */
+            background-image: linear-gradient(45deg, yellow,pink,aqua,plum);
+            /* altura do elemento */
+            /* olha só http://devfuria.com.br/html-css/unidade-vw-vh-vmax-vmin/ <-- importante enteder as medidas modernas */
+            height: 100vw;
+            /* cor do texto */
+            color: #fff;
+            /* qual sera o tipo da fonte */
+            font-family: cursive;
+            text-align-last: center;
+        }
+
+        .calculadora {
+            /* position se refere ao elemento e absolute siguinifica que ele ficara centralizado(mais iu menos isso) refenrete ao elemento pais */
+            position: absolute;
+            background-color: black;
+            /* pensa assim: quero colocar elemento em 50% do vw que ela ocupa do top ou left*/
+            top: 50%;
+            left: 50%;
+            /* infinitas possibilidades, usa junto com o top e left para deixar o elemento centralizado referente ao vw https://developer.mozilla.org/pt-BR/docs/Web/CSS/transform */
+            transform: translate(-50%, -50%);
+            /* largura da borda */
+            border-radius: 15px;
+            /* distancia da borda */
+            padding: 15px;
+            color: #fff;
+        }
+
+        .botao {
+            /* algura do elemento */
+            width: 50px;
+            /* largura do elemento */
+            height: 50px;
+            /* tamanho do texto */
+            font-size: 25px;
+            /* quando colocar o mouse encima ele vira um pointer */
+            cursor: pointer;
+            /* cor de fundo */
+            background-color: rgb(31, 31, 31);
+            /* colocando none ele deixa sem borda, tbm serve para mudar uma borda, ou mudar a cor dela*/
+            border: none;
+            /* cor do texto =D */
+            color: #fff;
+            margin: 3px;
+        }
+
+        /* :hover é quando o mouse está sobre o elemento, todos os elementos tem hover, experimenta colocar o hover em uma div e mudar a fonte ou cord do texto ou a fonte. */
+        .botao:hover {
+            /* cor do fundo ^^ */
+            background-color: rgb(0, 0, 0);
+        }
+
+        .botaoc {
+            /* cor do fundo -.- */
+            background-color: aqua;
+        }
+
+        .botaox {
+            /* cor do fundo TT */
+            background-color: plum;
+        }
+
+        .botaoapagar {
+            background-color: pink;
+        }
+        .botaobarra {
+            background-color: yellow; 
+        }
+        #resultado {
+            background-color: black;
+            border: 1px solid;
+            border-radius: 10px;
+            border-color: #fff;
+            width: 100%;
+            height: 30px;
+            font-size: 25px;
+            color: #fff;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- div cria um elemento -->
+    <div class="fundo">
+        <h1>Naty</h1>
+        <div class="calculadora">
+            <h1>Calculadora</h1>
+            <p id="resultado"></p>
+
+            <!-- cria uma tabela, tem que envolver um TR ou TD -->
+            <table>
+                <!-- tr se refenre a linha de uma tabela -->
+                <tr>
+                    <!-- td se refere a culuna de uma tabela -->
+                    <td><button class="botao botaoc" onclick="clean()">C</button></td>
+                    <td><button class="botao botaoapagar" onclick="back()"><</button>
+                    </td>
+                    <td><button class="botao botaobarra" onclick="insert('/')">/</button></td>
+                    <td><button class="botao botaox" onclick="insert('*')">X</button></td>
+
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('1')">1</button></td>
+                    <td><button class="botao" onclick="insert('2')">2</button></td>
+                    <td><button class="botao" onclick="insert('3')">3</button></td>
+                    <td><button class="botao" onclick="insert('-')">-</button></td>
+
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('4')">4</button></td>
+                    <td><button class="botao" onclick="insert('5')">5</button></td>
+                    <td><button class="botao" onclick="insert('6')">6</button></td>
+                    <td><button class="botao" onclick="insert('+')">+</button></td>
+
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('7')">7</button></td>
+                    <td><button class="botao" onclick="insert('8')">8</button></td>
+                    <td><button class="botao" onclick="insert('9')">9</button></td>
+                    <td rowspan="2"><button class="botao" style="height: 106px;" onclick="calcular()">=</button></td>
+                <tr>
+                    <td><button class="botao" onclick="insert('.')">.</button></td>
+                    <td colspan="2"><button class="botao" style="width:106px" onclick="insert('0')">0</button></td>
+
+                </tr>
+
+
+
+            </table>
+
+        </div>
+
+    </div>
+    <script>
+        function insert(num) {
+            var numero = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = numero+num;
+        }
+        function clean()
+        {
+          document.getElementById('resultado').innerHTML = "";
+        }
+        function back()
+        {
+           var resultado = document.getElementById('resultado').innerHTML;
+           document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1);
+        }
+        function calcular()
+        {
+            var resultado = document.getElementById('resultado').innerHTML;
+            if(resultado)
+            {
+                var resultado = document.getElementById('resultado').innerHTML = eval(resultado)
+            }
+        }
+    </script>
+</body>
+
+</html>
